@@ -1,0 +1,121 @@
+.book-details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .book-details-card {
+    display: flex;    
+    align-items: flex-start;
+    gap: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+  }
+  
+  .details-book-cover {
+    width: 300px;
+    border-radius: 5px;
+    object-fit: contain;
+  }
+  
+  .book-info {
+    flex: 1;
+  }
+  .book-actions{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .book-actions a:hover{
+    text-decoration: none;
+    color: white;
+  }
+  
+  .book-actions a:active{
+    text-decoration: none;
+  }
+
+  .download-btn, .back-btn, .read-online-btn{
+    display: inline-block;
+    margin: 10px;
+    padding: 8px 12px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    width: 180px;
+    font-size: 15px;
+  }
+  
+  .download-btn {
+    background: green;
+  }
+  
+  .back-btn {
+    background: gray;
+  }  
+  .download-btn:hover {
+    background: rgb(1, 82, 1);
+  }
+  
+  .back-btn:hover {
+    background: rgb(74, 74, 74);
+  }
+  
+/* Rating Section */
+.ratings {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Star Container */
+.rating-buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* Default grayscale star */
+.star-btn {
+  background: none;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.2s;
+  position: relative;
+  filter: grayscale(100%);
+}
+
+/* Change color for the hovered star and all previous stars */
+.star-btn:hover,
+.star-btn:hover ~ .star-btn {
+  filter: grayscale(0);
+  transform: scale(1.1);  color: #ffc107; /* Gold */
+}
+
+/* Reset stars to grayscale after hovering */
+.rating-buttons:not(:hover) .star-btn {
+  filter: grayscale(1);  
+}
+
+/* Keep stars selected in gold color */
+.star-btn.selected,
+.star-btn.selected ~ .star-btn {
+  filter: grayscale(0);  color: #ffc107; /* Gold */
+}
+
+/* Remove focus outline */
+.star-btn:focus {
+  outline: none;
+}
