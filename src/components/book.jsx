@@ -37,7 +37,7 @@ const Book = ({ book }) => {
     }
   
     try {
-      await fetch(`http://localhost:8000/api/books/${bookname}/increment-visit`, {
+      await fetch(`https://library-backend-vi4b.onrender.com/api/books/${bookname}/increment-visit`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" }
       });

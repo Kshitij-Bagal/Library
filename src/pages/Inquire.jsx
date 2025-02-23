@@ -23,7 +23,7 @@ const Inquire = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/api/inquiries", {
+      const response = await fetch("https://library-backend-vi4b.onrender.com/api/inquiries", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

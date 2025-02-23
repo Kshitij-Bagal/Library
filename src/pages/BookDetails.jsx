@@ -21,7 +21,7 @@ const BookDetails = () => {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/api/books/${encodeURIComponent(name)}`);
+        const response = await fetch(`https://library-backend-vi4b.onrender.com/api/books/${encodeURIComponent(name)}`);
         if (!response.ok) throw new Error("Book not found");
         
         const data = await response.json();
@@ -34,7 +34,7 @@ const BookDetails = () => {
 
     const fetchRatings = async () => {
       try {
-        const res = await fetch(`http://localhost:8000/api/books/${encodeURIComponent(name)}/ratings`);
+        const res = await fetch(`https://library-backend-vi4b.onrender.com/api/books/${encodeURIComponent(name)}/ratings`);
         if (!res.ok) throw new Error("Failed to fetch ratings");
 
         const data = await res.json();
@@ -69,7 +69,7 @@ const BookDetails = () => {
     if (!book?.pdfUrl) return;
 
     try {
-      await fetch(`http://localhost:8000/api/books/${book.name}/increment-download`, {
+      await fetch(`https://library-backend-vi4b.onrender.com/api/books/${book.name}/increment-download`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" }
       });
@@ -83,7 +83,7 @@ const BookDetails = () => {
 
   const submitRating = async (rating) => {
     try {
-      const res = await fetch(`http://localhost:8000/api/books/${encodeURIComponent(name)}/rate`, {
+      const res = await fetch(`https://library-backend-vi4b.onrender.com/api/books/${encodeURIComponent(name)}/rate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ rating }),

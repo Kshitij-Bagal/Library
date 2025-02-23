@@ -1,5 +1,5 @@
 import React from "react";
-import Book from "./Book";
+import Book from "./book";
 
 const BookList = ({ books }) => {
   // console.log("Rendering BookList with books:", books);

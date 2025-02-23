@@ -7,13 +7,13 @@ const Home = () => {
 
   useEffect(() => {
     // Fetch Genres with Book Count
-    fetch("http://localhost:8000/api/genres")
+    fetch("https://library-backend-vi4b.onrender.com/api/genres")
       .then((res) => res.json())
       .then((data) => setGenres(data))
       .catch((err) => console.error("Error fetching genres:", err));
 
     // Fetch Popular Books (already sorted by backend)
-    fetch("http://localhost:8000/api/popular-books")
+    fetch("https://library-backend-vi4b.onrender.com/api/popular-books")
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
@@ -33,7 +33,7 @@ const Home = () => {
     }
   
     try {
-      await fetch(`http://localhost:8000/api/books/${bookname}/increment-visit`, {
+      await fetch(`https://library-backend-vi4b.onrender.com/api/books/${bookname}/increment-visit`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" }
       });

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import BookList from "../components/BookList";
+import BookList from "../components/bookList";
 import "../styles/BrowseBook.css";
 
 const BrowseBook = () => {
@@ -14,7 +14,7 @@ const BrowseBook = () => {
 
   useEffect(() => {
     // Fetch Genres
-    fetch("http://localhost:8000/api/genres")
+    fetch("https://library-backend-vi4b.onrender.com/api/genres")
       .then((res) => res.json())
       .then((data) => setGenres(data))
       .catch((err) => console.error("Error fetching genres:", err));
@@ -22,7 +22,7 @@ const BrowseBook = () => {
     // Fetch Books
     const fetchBooks = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/books");
+        const response = await fetch("https://library-backend-vi4b.onrender.com/api/books");
         const data = await response.json();
 
         if (Array.isArray(data)) {

@@ -25,7 +25,7 @@ const AddBook = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/books")
+    fetch("https://library-backend-vi4b.onrender.com/api/books")
       .then((response) => response.json())
       .then((data) => setBookCount(data.length))
       .catch((error) => console.error("Error fetching book count:", error));
@@ -69,7 +69,7 @@ const AddBook = () => {
     formData.append("image", form.image);
 
     try {
-      const response = await fetch("http://localhost:8000/upload", {
+      const response = await fetch("https://library-backend-vi4b.onrender.com/upload", {
         method: "POST",
         body: formData,
       });
