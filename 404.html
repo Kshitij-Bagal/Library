@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <script>
+      // Redirect back to index.html for React Router handling
+      var path = window.location.pathname.replace('/Library/', '');
+      window.location.href = '/Library/' + (path || '');
+    </script>
+</head>
+<body>
+    <h1>404 - Page Not Found</h1>
+    <p>Redirecting you back to the app...</p>
+</body>
+</html>
