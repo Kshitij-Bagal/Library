@@ -19,6 +19,14 @@ const Loading = () => (
   </div>
 );
 
+const NotFound = () => (
+  <div className="not-found">
+    <h2>404 - Page Not Found</h2>
+    <p>Oops! The page you are looking for does not exist.</p>
+  </div>
+);
+
+
 // Layout component (for navbar + content)
 const Layout = () => (
   <>
@@ -43,6 +51,7 @@ const router = createBrowserRouter([
       { path: "browse-books/:genre", element: <BrowseBook /> },
       { path: "inquire", element: <Inquire /> },
       { path: "favorites", element: <Favorites /> },
+      { path: "*", element: <NotFound /> },
     ],
   },
 ]);
