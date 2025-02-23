@@ -270,6 +270,20 @@ button:hover {
   font-size: 1.5rem;
   color: #007bff;
 }
+.not-found{
+  text-align: center;
+}
+.not-found-btn{
+  background-color: #006aff;
+  width: 150px;
+  color: white;
+}
+.not-found-btn:hover{
+  background-color: #0056b3;
+}
+.not-found-btn a{
+  color: white;
+}
 
 
 /* Responsive Adjustments */
