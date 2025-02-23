@@ -129,6 +129,12 @@ h1 {
   width: 90%;
   font-size: 24px;
 }
+p{
+  margin: 20px 5% 20px;
+  text-align: center;
+  width: 90%;
+  font-size: 18px;
+}
 
 .add-book-form {
   display: flex;
@@ -203,21 +209,35 @@ button:hover {
   color: green;
   font-weight: bold;
 }
+.genres{
+  margin: 20px 0px;
+  text-align: center;
+}
 
 .genres ul {
   list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   padding: 0;
+  gap: 20px;
 }
 
 .genres li {
   display: inline-block;
   padding: 0px 0px 5px 30px;
+  width: auto;
 }
 
 .genres a {
   text-decoration: none;
-  color: #007bff;
+  color: #ff0000;
   font-size: 18px;
+  background-color: rgb(246, 246, 153);
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid #000000;
+  transition: background 0.3s;
 }
 
 .popular-book-cover {
@@ -240,6 +260,15 @@ button:hover {
 .popular-book a {
   text-align: center;
   padding-bottom: 20px;
+}
+
+.loading-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: #007bff;
 }
 
 

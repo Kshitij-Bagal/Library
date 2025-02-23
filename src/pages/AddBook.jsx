@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addBook } from "../redux/booksSlice";
+import { addFavorite } from "../redux/favoritesSlice";
 import { useNavigate } from "react-router-dom";
+import "../styles/AddBook.css";
 
 const AddBook = () => {
   const [form, setForm] = useState({
@@ -17,15 +18,14 @@ const AddBook = () => {
 
   const [pdfName, setPdfName] = useState("No PDF chosen");
   const [imageName, setImageName] = useState("No Image chosen");
-  const [bookCount, setBookCount] = useState(0); // Store the total number of books
-  const [imagePreview, setImagePreview] = useState(null); // Store the image preview URL
+  const [bookCount, setBookCount] = useState(0);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // ✅ Fetch the total number of books on component mount
   useEffect(() => {
-    fetch("https://library-backend-vi4b.onrender.com/api/books")
+    fetch("http://localhost:8000/api/books")
       .then((response) => response.json())
       .then((data) => setBookCount(data.length))
       .catch((error) => console.error("Error fetching book count:", error));
@@ -39,10 +39,9 @@ const AddBook = () => {
     if (fileType === "image") {
       setImageName(file ? file.name : "No Image chosen");
 
-      // Set image preview URL when an image is selected
       if (file) {
         const reader = new FileReader();
-        reader.onloadend = () => setImagePreview(reader.result); // Set the preview URL
+        reader.onloadend = () => setImagePreview(reader.result);
         reader.readAsDataURL(file);
       }
     }
@@ -57,7 +56,7 @@ const AddBook = () => {
     }
 
     const formData = new FormData();
-    const newBookId = bookCount + 1; // Assign a unique ID
+    const newBookId = bookCount + 1;
 
     formData.append("id", newBookId);
     formData.append("name", form.title);
@@ -70,7 +69,7 @@ const AddBook = () => {
     formData.append("image", form.image);
 
     try {
-      const response = await fetch("https://library-backend-vi4b.onrender.com/upload", {
+      const response = await fetch("http://localhost:8000/upload", {
         method: "POST",
         body: formData,
       });
@@ -79,12 +78,12 @@ const AddBook = () => {
         throw new Error(`Upload failed: ${response.status} ${response.statusText}`);
       }
 
-      const text = await response.text(); // Read response as text
+      const text = await response.text();
       console.log("Raw server response:", text);
 
       let data;
       try {
-        data = JSON.parse(text); // Try to parse as JSON
+        data = JSON.parse(text);
       } catch (jsonError) {
         console.error("Error parsing JSON:", jsonError);
         alert("Invalid response from the server.");
@@ -93,7 +92,7 @@ const AddBook = () => {
 
       if (data?.success && data.metadata?.pdfUrl && data.metadata?.imageUrl) {
         dispatch(
-          addBook({
+          addFavorite({
             id: newBookId,
             name: form.title,
             author: form.author,
@@ -105,12 +104,12 @@ const AddBook = () => {
             price: form.price || "$100",
           })
         );
-        alert(data.message || "Book uploaded successfully!"); // ✅ Use correct message
+
+        alert(data.message || "Book uploaded and added to favorites!");
         navigate("/browse-books");
       } else {
         console.error("Upload failed, response data:", data);
         alert(`Upload failed: ${data?.message || "Unknown error from server"}`);
-        console.log("Raw server response:", text);
       }
     } catch (error) {
       console.error("Error uploading book:", error);
@@ -170,39 +169,40 @@ const AddBook = () => {
             onChange={(e) => setForm({ ...form, genre: e.target.value })}
             required
           />
-
-          {/* File Uploader for PDF */}
+          <div className="upload-btn">
           <label className="file-upload">
             <input type="file" accept=".pdf" onChange={(e) => handleFileChange(e, "pdf")} required />
             <span>{pdfName}</span>
           </label>
 
-          {/* File Uploader for Image */}
           <label className="file-upload">
             <input type="file" accept="image/*" onChange={(e) => handleFileChange(e, "image")} required />
             <span>{imageName}</span>
           </label>
-
-          <button type="submit">Upload</button>
+          </div>
+          <button type="submit">Upload & Add to Favorites</button>
         </form>
 
-        {/* Preview Section */}
-        <div className="preview-section">
-          <h2>Preview</h2>
-          <p><strong>Title:</strong> {form.title || "N/A"}</p>
-          <p><strong>Author:</strong> {form.author || "N/A"}</p>
-          <p><strong>Description:</strong> {form.description || "N/A"}</p>
-          <p><strong>PDF:</strong> {pdfName}</p>
-          <p><strong>Image:</strong> {imageName}</p>
+        {form.title && (
+          <div className="preview-section">
+            <h2>Book Preview</h2>
+            <p><strong>Title:</strong> {form.title}</p>
+            <p><strong>Author:</strong> {form.author}</p>
+            <p><strong>Price:</strong> {form.price || "$100"}</p>
+            <p><strong>Genre:</strong> {form.genre || "N/A"}</p>
+            <p><strong>Publish Date:</strong> {form.publishDate || "N/A"}</p>
+            <p><strong>Description:</strong> {form.description}</p>
+            <p><strong>PDF:</strong> {pdfName}</p>
+            <p><strong>Cover Image:</strong> {imageName}</p>
 
-          {/* Display Image Preview */}
-          {imagePreview && (
-            <div className="image-preview">
-              <h3>Cover Image Preview:</h3>
-              <img src={imagePreview} alt="Book Cover" style={{ width: "200px", height: "auto" }} />
-            </div>
-          )}
-        </div>
+            {imagePreview && (
+              <>
+                <h3>Cover Image Preview:</h3>
+                <img src={imagePreview} alt="Book Cover" style={{ width: "200px", height: "auto", borderRadius: "10px" }} />
+              </>
+            )}
+          </div>
+        )}
       </div>
     </>
   );

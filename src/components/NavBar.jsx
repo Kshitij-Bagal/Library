@@ -11,18 +11,19 @@ const NavBar = () => {
       <div className="navbar-container">
         {/* Logo */}
         <div className="navbar-logo">
-          <Link to="/" className="logo-text">
+          <Link to="/Library/" className="logo-text">
             📚 MyLibrary
           </Link>
         </div>
 
         {/* Desktop Menu */}
         <div className="nav-menu">
-          <NavItem to="/" label="Home" />
-          <NavItem to="/browse-books" label="Browse" />
-          <NavItem to="/add-book" label="Add Book" />
-          <NavItem to="/about" label="About" />
-          <NavItem to="/inquire" label="Inquire" />
+          <NavItem to="/Library/" label="Home" />
+          <NavItem to="/Library/browse-books" label="Browse" />
+          <NavItem to="/Library/add-book" label="Add Book" />
+          <NavItem to="/Library/about" label="About" />
+          <NavItem to="/Library/inquire" label="Inquire" />
+          <NavItem to="/Library/favorites" label="Favorites" />
         </div>
 
         {/* Mobile Menu Button */}
@@ -36,11 +37,37 @@ const NavBar = () => {
 
       {/* Mobile Menu */}
       <div className={`mobile-menu ${menuOpen ? "active" : ""}`}>
-        <NavItem to="/" label="Home" mobile setMenuOpen={setMenuOpen} />
-        <NavItem to="/browse-books" label="Browse" mobile setMenuOpen={setMenuOpen} />
-        <NavItem to="/add-book" label="Add Book" mobile setMenuOpen={setMenuOpen} />
-        <NavItem to="/about" label="About" mobile setMenuOpen={setMenuOpen} />
-        <NavItem to="/inquire" label="Inquire" mobile setMenuOpen={setMenuOpen} />
+        <NavItem to="/Library/" label="Home" mobile setMenuOpen={setMenuOpen} />
+        <NavItem
+          to="/Library/browse-books"
+          label="Browse"
+          mobile
+          setMenuOpen={setMenuOpen}
+        />
+        <NavItem
+          to="/Library/add-book"
+          label="Add Book"
+          mobile
+          setMenuOpen={setMenuOpen}
+        />
+        <NavItem
+          to="/Library/about"
+          label="About"
+          mobile
+          setMenuOpen={setMenuOpen}
+        />
+        <NavItem
+          to="/Library/inquire"
+          label="Inquire"
+          mobile
+          setMenuOpen={setMenuOpen}
+        />       
+         <NavItem
+        to="/Library/favorites"
+        label="Favorites"
+        mobile
+        setMenuOpen={setMenuOpen}
+      />
       </div>
     </nav>
   );

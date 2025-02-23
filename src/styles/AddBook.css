@@ -1,0 +1,139 @@
+/* AddBook Component Responsive CSS */
+
+.add-book-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 100px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-book-form {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    gap: 12px;
+  }
+  
+  .add-book-form input,
+  .add-book-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border 0.3s;
+  }
+  
+  .add-book-form input:focus,
+  .add-book-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* File Upload Styling */
+  .file-upload {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .file-upload input {
+    display: none;
+  }
+  
+  .file-upload span {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Button Styling */
+  button {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background: #0056b3;
+  }
+  
+  button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 540px) {
+    .add-book-container {
+      flex-direction: column;
+      gap: 20px;
+      padding: 15px;
+    }
+  
+    .add-book-form {
+      width: 100%;
+    }
+
+    .upload-btn{
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        justify-content: center;
+    }
+
+    .upload-btn label {
+        width: 200px;
+    }
+  
+    .file-upload {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .file-upload span {
+      margin-top: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .add-book-container {
+      padding: 10px;
+      margin: 20px auto;
+    }
+  
+    h1 {
+      font-size: 20px;
+    }
+  
+    .add-book-form input,
+    .add-book-form textarea {
+      font-size: 14px;
+    }
+  
+    .file-upload span {
+      font-size: 12px;
+    }
+  
+    button {
+      font-size: 14px;
+      padding: 8px;
+    }
+  }
+  

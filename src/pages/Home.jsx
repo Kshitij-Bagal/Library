@@ -7,13 +7,13 @@ const Home = () => {
 
   useEffect(() => {
     // Fetch Genres with Book Count
-    fetch("https://library-backend-vi4b.onrender.com/api/genres")
+    fetch("http://localhost:8000/api/genres")
       .then((res) => res.json())
       .then((data) => setGenres(data))
       .catch((err) => console.error("Error fetching genres:", err));
 
     // Fetch Popular Books (already sorted by backend)
-    fetch("https://library-backend-vi4b.onrender.com/api/popular-books")
+    fetch("http://localhost:8000/api/popular-books")
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
@@ -33,7 +33,7 @@ const Home = () => {
     }
   
     try {
-      await fetch(`https://library-backend-vi4b.onrender.com/api/books/${bookname}/increment-visit`, {
+      await fetch(`http://localhost:8000/api/books/${bookname}/increment-visit`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" }
       });
@@ -55,7 +55,7 @@ const Home = () => {
           <ul>
             {genres.map((genre) => (
               <li key={genre.name}>
-                <Link to={`/browse-books/${genre.name.toLowerCase()}`}>
+                <Link to={`/Library/browse-books/${genre.name.toLowerCase()}`}>
                   {genre.name} ({genre.count} books)
                 </Link>
               </li>
@@ -73,7 +73,7 @@ const Home = () => {
           <ul>
             {popularBooks.map((book) => (
               <li className="popular-book" key={book.id}>
-                <Link onClick={() => handleViewDetails(book)} to={`/book/${book.name}`}>
+                <Link onClick={() => handleViewDetails(book)} to={`/Library/book/${book.name}`}>
                   <img src={book.imageUrl} alt={book.name} className="popular-book-cover" />
                   <div>
                     <h3>{book.name}</h3>

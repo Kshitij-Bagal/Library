@@ -1,28 +1,54 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar"; 
-import Home from "./pages/Home";
-import About from "./pages/About";
-import BookDetails from "./pages/BookDetails";
-import AddBook from "./pages/AddBook";
-import BrowseBook from "./pages/BrowseBook";
-import Inquire from "./pages/Inquire";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { Suspense, lazy } from "react";
+import NavBar from "./components/NavBar";
 import "./App.css";
 
+// Lazy-loaded components
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const BookDetails = lazy(() => import("./pages/BookDetails"));
+const AddBook = lazy(() => import("./pages/AddBook"));
+const BrowseBook = lazy(() => import("./pages/BrowseBook"));
+const Inquire = lazy(() => import("./pages/Inquire"));
+const Favorites = lazy(() => import("./pages/Favorites"));
+
+// Loading component
+const Loading = () => (
+  <div className="loading-screen">
+    <h2>Loading...</h2>
+  </div>
+);
+
+// Layout component (for navbar + content)
+const Layout = () => (
+  <>
+    <NavBar />
+    <Suspense fallback={<Loading />}>
+      <Outlet />
+    </Suspense>
+  </>
+);
+
+// Router configuration
+const router = createBrowserRouter([
+  {
+    path: "/Library/",
+    element: <Layout />, // Wrap everything with the layout
+    children: [
+      { path: "", element: <Home /> }, // Home page
+      { path: "about", element: <About /> },
+      { path: "book/:name", element: <BookDetails /> },
+      { path: "add-book", element: <AddBook /> },
+      { path: "browse-books", element: <BrowseBook /> },
+      { path: "browse-books/:genre", element: <BrowseBook /> },
+      { path: "inquire", element: <Inquire /> },
+      { path: "favorites", element: <Favorites /> },
+    ],
+  },
+]);
+
 function App() {
-  return (
-    <Router basename="/Library">
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/book/:name" element={<BookDetails />} />
-        <Route path="/add-book" element={<AddBook />} />
-        <Route path="/browse-books" element={<BrowseBook />} />
-        <Route path="/browse-books/:genre" element={<BrowseBook />} />
-        <Route path="/inquire" element={<Inquire />} />
-      </Routes>
-    </Router>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

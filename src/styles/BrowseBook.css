@@ -86,9 +86,9 @@ h1 {
   /* Book Cover */
   .book-cover {
     width: 90%;
-    object-fit: cover;
+    height: 350px;
+    object-fit:fill;
     padding: 10px;
-    max-height: auto;
   }
   
   /* Book Info (Initially Hidden) */
@@ -124,17 +124,25 @@ h1 {
     color: #ddd;
     margin-bottom: 10px;
   }
+  .bool-info .fav-btn{
+    width: 200px;
+  }
   
   /* Responsive Styles */
   @media (max-width: 768px) {
     .filter {
       flex-direction: column;
-      align-items: stretch;
+      gap: 30px;
+      align-items: center;
+    }
+    .filter input{
+      width: 90%;
+      font-size: 14px;
     }
   
     .filter input,
     .filter select {
-      margin-bottom: 15px;
+      margin: 5px 15px;
     }
   
     .book-list {
@@ -142,7 +150,7 @@ h1 {
     }
   
     .book-card {
-      width: 220px;
+      width: 250px;
     }
   }
   

@@ -22,4 +22,31 @@
     font-weight: bold;
     color: #333;
   }
-  
+  @media (max-width: 768px) {
+    .book-view-container {
+      width: 90%;
+      height: auto;
+      margin: 0px 5% 10px;
+      padding: 10px;
+    }
+
+    .book-view-iframe {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .book-view-container {
+      width: 100%;
+      margin: 0px;
+      padding: 5px;
+    }
+
+    .book-view-iframe {
+      width: 100%;
+    }
+
+    .loading-text, .error-text {
+      font-size: 16px;
+    }
+  }
